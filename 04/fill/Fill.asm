@@ -17,6 +17,7 @@
 0;JMP
 
 (LOOP)
+  // write initialization
   @KBD
   D=M
   @keyin
@@ -41,6 +42,7 @@
   0;JMP
 
 (SCREEN_BLACK)
+  // check stop condition i
   @j
   M=0
   @i
@@ -55,6 +57,7 @@
   0;JMP
 
 (SCREEN_BLACK_INNER)
+  // check stop condition j
   @j
   D=M
   @m
@@ -62,22 +65,26 @@
   @SCREEN_BLACK
   D;JGE
 
+  // make SCREEN pointer
   @SCREEN
   D=A
   @addr
   M=D
 
+  // assign new value to pointer value
   @k
   D=M
   @addr
   A=M+D
   M=-1
 
+  // refresh looping variables
   @j
   M=M+1
   @k
   M=M+1
 
+  // goto next loop
   @SCREEN_BLACK_INNER
   0;JMP
 

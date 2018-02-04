@@ -8,6 +8,7 @@
 
 // Put your code here.
 
+// initialization
 @R1
 D=M
 @n
@@ -20,6 +21,7 @@ M=0
 0;JMP
 
 (SUMLOOP)
+  // check stop condition i
   @i
   D=M
   @n
@@ -27,18 +29,22 @@ M=0
   @STOP
   D;JGE
 
+  // add summation
   @R0
   D=M
   @sum
   M=M+D
 
+  // refresh looping variables
   @i
   M=M+1
 
+  // goto next loop
   @SUMLOOP
   0;JMP
 
 (STOP)
+  // after loop
   @sum
   D=M
   @R2
@@ -48,5 +54,6 @@ M=0
   0;JMP
 
 (END)
+  // infinite loop for end
   @END
   0;JMP
