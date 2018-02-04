@@ -1,8 +1,8 @@
-// R[0]에 있는 숫자가 소수인지 아닌지 판별
-// 소수이면 R[1]에 1을
-// 소수가 아니면 R[1]에 0을 저장
-// check whether R[0] is prime or not
-// the result is saved to R[1]
+// RAM[0]에 있는 숫자가 소수인지 아닌지 판별
+// 소수이면 RAM[1]에 1을
+// 소수가 아니면 RAM[1]에 0을 저장
+// check whether RAM[0] is prime or not
+// the result is saved to RAM[1]
 @R0
 D=M
 @n
@@ -28,7 +28,7 @@ M=D
   // i*i <= n
   D=D-M
   @STOP_TRUE
-  D+1;JEQ
+  D;JEQ
 
   @temp // temp for calculating D%M
   M=0
@@ -70,5 +70,3 @@ M=D
 (END)
   @END
   0;JMP
-
-```
