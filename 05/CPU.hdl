@@ -54,7 +54,7 @@ CHIP CPU {
     Mux16 (a=instruction, b=aluOut, sel=instruction[15], out=aluOutMux16Instruction);
     Not (in=instruction[15], out=notInst15);
     Or (a=notInst15, b=instruction[5], out=instNot15Or5);
-    ARegister (in=aluOutMux16Instruction, load=instNot15Or5, out=regAOut);
+    ARegister (in=aluOutMux16Instruction, load=instNot15Or5, out=regAOut, out[0..14]=addressM);
 
     // ALU
     Mux16 (a=regAOut, b=inM, sel=instruction[12], out=regAOutMux16inM);
@@ -73,17 +73,15 @@ CHIP CPU {
       f=instruction[7],
       no=instruction[6],
 
-      // output
+      // output reuse
       out=aluOut,
+      // output outside of cpu
+      out=outM,
       zr=aluZero,
       ng=aluNegative
     );
-
-    // ALU output
-    Or16 (a=aluOut, b=aluOut, out=outM);
     // c instruction + d3
     And (a=instruction[15], b=instruction[3], out=writeM);
-    Or16 (a=regAOut, b=regAOut, out[0..14]=addressM);
 
     // Control
     // if aluOut sufficient jump(inst[13..15]) condition, jump else pc++
